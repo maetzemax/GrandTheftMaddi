@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
@@ -12,6 +10,11 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private float aimingSpeed = 10f;
 
+    public GameObject followTarget;
+
+    private Quaternion nextRotation;
+    private float rotationLerp = 10;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -21,28 +24,44 @@ public class Movement : MonoBehaviour {
         Cursor.visible = false;
     }
 
-    bool isGrounded() {
-        return rb.velocity.y == 0;
-    }
-
     // Update is called once per frame
     void Update() {
 
         // WALKING
-        if (Input.GetKey(KeyCode.W)) transform.position += (transform.forward * Time.deltaTime * movementSpeed);
-        if (Input.GetKey(KeyCode.S)) transform.position -= (transform.forward * Time.deltaTime * movementSpeed);
-        if (Input.GetKey(KeyCode.A)) transform.position -= (transform.right * Time.deltaTime * movementSpeed);
-        if (Input.GetKey(KeyCode.D)) transform.position += (transform.right * Time.deltaTime * movementSpeed);
-
-        // JUMPING
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded()) {
-            rb.AddForce(Vector3.up * 300);
-        }
+        var moveX = Input.GetAxis("Horizontal");
+        var moveY = Input.GetAxis("Vertical");
 
         // ROTATE
-        float aimingY = Input.GetAxis("Mouse X");
-        transform.Rotate(new Vector3(0f, aimingY * aimingSpeed * Time.deltaTime));
+        float aimingY = Input.GetAxis("Mouse Y");
+        float aimingX = Input.GetAxis("Mouse X");
 
-        
+        followTarget.transform.rotation *= Quaternion.AngleAxis(aimingX * aimingSpeed, Vector3.up);
+        followTarget.transform.rotation *= Quaternion.AngleAxis(-aimingY * aimingSpeed, Vector3.right);
+
+        var angles = followTarget.transform.localEulerAngles;
+        angles.z = 0;
+
+        var angle = followTarget.transform.localEulerAngles.x;
+
+        if (angle > 180 && angle < 340) {
+            angles.x = 340;
+        } else if (angle < 180 && angle > 40) {
+            angles.x = 40;
+        }
+
+        followTarget.transform.localEulerAngles = angles;
+        nextRotation = Quaternion.Lerp(followTarget.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
+
+        if (moveX == 0 && moveY == 0) {
+            return;
+        }
+
+        var speed = movementSpeed / 100;
+        Vector3 position = (transform.forward * moveY * speed) + (transform.right * moveX * speed);
+
+        transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
+        followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+
+        transform.position += position;
     }
 }
