@@ -24,12 +24,41 @@ public class Movement : MonoBehaviour {
         Cursor.visible = false;
     }
 
+    private bool isMoving {
+        get {
+            return (rgtMovement || lftMovement || fwdMovement || bwdMovement);
+        }
+    }
+
+    private bool fwdMovement {
+        get {
+            return Input.GetKey(KeyCode.W);
+        }
+    }
+
+    private bool bwdMovement {
+        get {
+            return Input.GetKey(KeyCode.S);
+        }
+    }
+
+    private bool rgtMovement {
+        get {
+            return Input.GetKey(KeyCode.D);
+        }
+    }
+
+    private bool lftMovement {
+        get {
+            return Input.GetKey(KeyCode.A);
+        }
+    }
+
+
     // Update is called once per frame
     void Update() {
 
         // WALKING
-        var moveX = Input.GetAxis("Horizontal");
-        var moveY = Input.GetAxis("Vertical");
 
         // ROTATE
         float aimingY = Input.GetAxis("Mouse Y");
@@ -50,18 +79,36 @@ public class Movement : MonoBehaviour {
         }
 
         followTarget.transform.localEulerAngles = angles;
+
         nextRotation = Quaternion.Lerp(followTarget.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
 
-        if (moveX == 0 && moveY == 0) {
+        if (!isMoving) {
+
+            // TODO: Wrap in aiming value true if aiming is implemented
+            // transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
+            // followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
             return;
         }
 
-        var speed = movementSpeed / 100;
-        Vector3 position = (transform.forward * moveY * speed) + (transform.right * moveX * speed);
+        Vector3 position = new Vector3();
+        var speed = movementSpeed / 10;
+
+        if (fwdMovement)
+            position += (transform.forward * speed);
+
+        if (bwdMovement)
+            position -= (transform.forward * speed);
+
+        if (rgtMovement)
+            position += (transform.right * speed);
+
+        if (lftMovement)
+            position -= (transform.right * speed);
+
+
+        transform.position += Vector3.ClampMagnitude(position, 1f);
 
         transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
         followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-
-        transform.position += position;
     }
 }
