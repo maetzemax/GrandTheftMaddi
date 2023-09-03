@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
     private CharacterController controller;
-    
-
-    public float aimingSpeed = 2.0f;
 
 
-    private bool groundedPlayer;
     [SerializeField]
     private float playerSpeed = 2.0f;
+    [SerializeField]
+    private float aimingSpeed = 2.0f;
 
+    private bool groundedPlayer;
+    
     private Vector3 playerVelocity;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour {
 
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
-            playerVelocity.y = 0f;
+            playerVelocity.y = gravityValue * 0.01f;
         }
 
         controller.Move(transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed);

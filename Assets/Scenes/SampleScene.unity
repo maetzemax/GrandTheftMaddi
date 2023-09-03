@@ -1638,8 +1638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec3134adcbe9064baef537b76cc92c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimingSpeed: 2
   playerSpeed: 5
+  aimingSpeed: 2
   followTarget: {fileID: 378764078}
 --- !u!23 &1350275539
 MeshRenderer:
