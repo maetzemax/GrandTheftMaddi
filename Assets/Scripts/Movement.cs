@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     private float movementSpeed = 10f;
+    public float jumpHeight = 2f;
 
     [SerializeField]
     private float aimingSpeed = 10f;
@@ -54,6 +55,12 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    private bool isGrounded {
+        get {
+            return rb.velocity.y == 0;
+        }
+    }
+
 
     // Update is called once per frame
     void Update() {
@@ -78,6 +85,10 @@ public class Movement : MonoBehaviour {
             angles.x = 40;
         }
 
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+            rb.AddForce(Vector3.up * jumpHeight);
+        }
+
         followTarget.transform.localEulerAngles = angles;
 
         nextRotation = Quaternion.Lerp(followTarget.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
@@ -92,6 +103,10 @@ public class Movement : MonoBehaviour {
 
         Vector3 position = new Vector3();
         var speed = movementSpeed / 10;
+
+        if (!isGrounded) {
+            speed *= 0.75f;
+        }
 
         if (fwdMovement)
             position += (transform.forward * speed);
