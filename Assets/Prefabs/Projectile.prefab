@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4835746502793852106}
   - component: {fileID: 283991650785446010}
   - component: {fileID: 6651897966850084773}
-  - component: {fileID: 3474928811072791338}
+  - component: {fileID: 2756731411701414017}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -201,30 +201,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6812790442725852008}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &3474928811072791338
-Rigidbody:
+--- !u!114 &2756731411701414017
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6812790442725852008}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3576eb959ad97334fa7a17f63d54cade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

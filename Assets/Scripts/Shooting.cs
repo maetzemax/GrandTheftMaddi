@@ -45,9 +45,7 @@ public class Shooting : MonoBehaviour {
         Debug.Log("Nearest Enemy: " + nearestEnemy + "; Distance: " + minimumDistance);
 
         var current = Instantiate(projectile, shootingPoint.position, new Quaternion());
-        var rb = current.GetComponent<Rigidbody>();
         current.transform.LookAt(nearestEnemy);
-        rb.AddForce(current.transform.forward * 1000);
-        Destroy(current, 5);
+        Destroy(current, 10);
     }
 }
