@@ -4,15 +4,13 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour { 
+public class Shooting : MonoBehaviour {
 
     public GameObject projectile;
     public Transform shootingPoint;
 
     private float attackSpeed = 1f;
     private float attackTime = 0f;
-
-    private bool canShoot = true;
 
     private Transform nearestEnemy;
 
@@ -26,6 +24,10 @@ public class Shooting : MonoBehaviour {
         if (attackTime <= 0.0f) {
             attackTime = attackSpeed;
         } else {
+            if (Input.GetKeyDown(KeyCode.P)) {
+                var current = Instantiate(projectile, shootingPoint.position, shootingPoint.transform.rotation);
+                Destroy(current, 10);
+            }
             return;
         }
 
@@ -42,10 +44,11 @@ public class Shooting : MonoBehaviour {
                 nearestEnemy = enemy.transform;
             }
         }
-        Debug.Log("Nearest Enemy: " + nearestEnemy + "; Distance: " + minimumDistance);
 
-        var current = Instantiate(projectile, shootingPoint.position, new Quaternion());
-        current.transform.LookAt(nearestEnemy);
-        Destroy(current, 10);
+        if (minimumDistance <= Player.instance.attackRange) {
+            var current = Instantiate(projectile, shootingPoint.position, new Quaternion());
+            current.transform.LookAt(nearestEnemy);
+            Destroy(current, 10);
+        }
     }
 }
