@@ -1,39 +1,40 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.ProBuilder;
 
-public class EnemyController : MonoBehaviour {
-    public float lookRadius = 10f;
-    private float randomPointRange = 50f;
-
-    private float attackSpeed = 2f;
+public class EnemyController : Enemy {
     private float attackTime = 0f;
 
-    Transform target;
-    NavMeshAgent agent;
+    private Player _target;
+    private NavMeshAgent _agent;
 
     public Transform centrePoint;
 
-    void Start() {
-        target = Player.instance.transform;
-        agent = GetComponent<NavMeshAgent>();
+    private void Awake() {
+        currentHealth = maxHealth;
+        _target = Player.instance;
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = movementSpeed;
     }
 
-    void Update() {
-        float distance = Vector3.Distance(transform.position, target.position);
+    private void Update() {
+        if (currentHealth <= 0f) {
+            Destroy(gameObject);
+            return;
+        } 
+        
+        var distance = Vector3.Distance(transform.position, _target.transform.position);
 
-        Vector3 point;
+        if (distance <= detectionRange) {
+            _agent.SetDestination(_target.transform.position);
 
-        if (distance <= lookRadius) {
-            agent.SetDestination(target.position);
-
-            if (distance <= agent.stoppingDistance) {
+            if (distance <= _agent.stoppingDistance) {
                 FaceTarget();
             }
-        } else if (agent.remainingDistance <= agent.stoppingDistance) {
-            if (RandomPoint(centrePoint.position, randomPointRange, out point)) {
+        } else if (_agent.remainingDistance <= _agent.stoppingDistance) {
+            if (RandomPoint(centrePoint.position, patrolRange, out var point)) {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                agent.SetDestination(point);
+                _agent.SetDestination(point);
             }
         }
 
@@ -54,20 +55,14 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void FaceTarget() {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        var direction = (_target.transform.position - transform.position).normalized;
+        var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-    }
-
     private bool RandomPoint(Vector3 center, float range, out Vector3 result) {
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) {
+        var randomPoint = center + Random.insideUnitSphere * range; 
+        if (NavMesh.SamplePosition(randomPoint, out var hit, 1.0f, NavMesh.AllAreas)) {
             result = hit.position;
             return true;
         }

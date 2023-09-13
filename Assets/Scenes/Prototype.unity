@@ -4465,7 +4465,6 @@ GameObject:
   - component: {fileID: 2061543298}
   - component: {fileID: 2061543297}
   - component: {fileID: 2061543301}
-  - component: {fileID: 2061543302}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4485,7 +4484,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec3134adcbe9064baef537b76cc92c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
+  movementSpeed: 5
+  maxHealth: 20
+  currentHealth: 0
+  healthRegenerationRate: 0
+  attackDamage: 2
+  attackSpeed: 1
+  attackRange: 10
+  player: {fileID: 2061543296}
+  criticalDamageMultiplier: 0
+  criticalDamagePercentage: 0
   aimingSpeed: 2
   groundMask:
     serializedVersion: 2
@@ -4576,24 +4584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6812790442725852008, guid: 054fcbd6c36679844a2d825c4f6643b9, type: 3}
   shootingPoint: {fileID: 1685822614}
---- !u!114 &2061543302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061543296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29dae7e880d2df44a3442b7f8c32064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2061543296}
-  maxHealth: 20
-  currentHealth: 20
-  attackDamage: 2
-  attackRange: 15
-  attackSpeed: 0
 --- !u!1 &2076304332
 GameObject:
   m_ObjectHideFlags: 0
