@@ -3355,7 +3355,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3380,9 +3380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45fce362692454439ced00e176cabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  spawnRate: 4
   enemies:
   - {fileID: 1118871042437496413, guid: f3352930abf9a074c80be52ed65607ca, type: 3}
-  spawnRate: 4
 --- !u!1001 &1619121411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4497,7 +4500,7 @@ MonoBehaviour:
   aimingSpeed: 2
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   groundCheck: {fileID: 1263038006}
   detectionRange: 0.01
   followTarget: {fileID: 606919823}

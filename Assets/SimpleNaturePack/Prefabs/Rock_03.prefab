@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4680757731157960810}
   - component: {fileID: 7495719641570791432}
   - component: {fileID: 8900699434979431037}
-  m_Layer: 6
+  - component: {fileID: -5628287320295297610}
+  m_Layer: 7
   m_Name: Rock_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,3 +135,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &-5628287320295297610
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4680757731160225450}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.15400001, y: 0.075, z: 0.155}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.007, y: 0.012, z: 0.002}
+  m_TimeToStationary: 0.5

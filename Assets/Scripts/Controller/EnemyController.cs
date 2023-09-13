@@ -1,9 +1,8 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : Enemy {
-    private float attackTime = 0f;
+    private float _attackTime = 0f;
 
     private Player _target;
     private NavMeshAgent _agent;
@@ -21,34 +20,41 @@ public class EnemyController : Enemy {
         if (currentHealth <= 0f) {
             Destroy(gameObject);
             return;
-        } 
-        
-        var distance = Vector3.Distance(transform.position, _target.transform.position);
+        }
 
+        #region PlayerDetection
+
+        var distance = Vector3.Distance(transform.position, _target.transform.position);
+        
         if (distance <= detectionRange) {
             _agent.SetDestination(_target.transform.position);
 
             if (distance <= _agent.stoppingDistance) {
                 FaceTarget();
             }
-        } else if (_agent.remainingDistance <= _agent.stoppingDistance) {
+        }
+
+        #endregion
+        
+        #region Patrolling
+        
+        if (_agent.remainingDistance <= _agent.stoppingDistance) {
             if (RandomPoint(centrePoint.position, patrolRange, out var point)) {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 _agent.SetDestination(point);
             }
         }
+        
+        #endregion
 
-        #region Attack Timer
+        #region Attack
 
-        attackTime -= Time.deltaTime;
-        if (attackTime <= 0.0f) {
-            if (distance <= 1.5f) {
-                Player.instance.currentHealth -= 1;
-                attackTime = attackSpeed;
-            }
-        } else {
-            return;
-        }
+        _attackTime -= Time.deltaTime;
+        if (!(_attackTime <= 0.0f)) return;
+        if (!(distance <= attackRange)) return;
+        
+        Player.instance.currentHealth -= 1;
+        _attackTime = 1 / attackSpeed;
 
         #endregion
 
