@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         Cursor.visible = false;
         _controller = gameObject.AddComponent<CharacterController>();
         _controller.skinWidth = 0.001f;
+        _controller.height = 1f;
         _stats = GetComponent<Player>();
     }
     
