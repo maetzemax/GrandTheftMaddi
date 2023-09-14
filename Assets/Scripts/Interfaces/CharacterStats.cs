@@ -16,8 +16,4 @@ public class CharacterStats: MonoBehaviour {
     // Attacks per second
     public float attackSpeed;
     public float attackRange;
-
-    private void Update() {
-        if (currentHealth <= 0.0f) Destroy(gameObject);
-    }
 }

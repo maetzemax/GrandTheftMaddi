@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class PlayerController : Player {
+public class PlayerController : MonoBehaviour {
     private CharacterController _controller;
+    private Player _stats;
     
     // Constants
     private const float JumpHeight = 1.0f;
@@ -25,6 +26,7 @@ public class PlayerController : Player {
         Cursor.visible = false;
         _controller = gameObject.AddComponent<CharacterController>();
         _controller.skinWidth = 0.001f;
+        _stats = GetComponent<Player>();
     }
     
     private void Update() {
@@ -63,8 +65,8 @@ public class PlayerController : Player {
         var moveX = Input.GetAxis("Horizontal");
 
         if (moveX != 0 || moveY != 0) {
-            _controller.Move(transform.forward * (moveY * Time.deltaTime * movementSpeed));
-            _controller.Move(transform.right * (moveX * Time.deltaTime * movementSpeed));
+            _controller.Move(transform.forward * (moveY * Time.deltaTime * _stats.movementSpeed));
+            _controller.Move(transform.right * (moveX * Time.deltaTime * _stats.movementSpeed));
             transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
             followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
         }

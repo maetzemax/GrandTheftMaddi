@@ -19,4 +19,8 @@ public class Player: CharacterStats {
     [Header("Attack")] 
     public float criticalDamageMultiplier;
     public float criticalDamagePercentage;
+    
+    private void Update() {
+        if (currentHealth <= 0.0f) Destroy(gameObject);
+    }
 }
