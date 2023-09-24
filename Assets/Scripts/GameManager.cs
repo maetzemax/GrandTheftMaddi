@@ -5,6 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
+    [HideInInspector] public Enemy[] enemies;
+    [HideInInspector] public Turret[] turrets;
+
+    [HideInInspector] public int killedEnemies = 0;
+
     private void Awake() { 
         // If there is an instance, and it's not me, delete myself.
         if (Instance != null && Instance != this) { 
@@ -26,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        enemies = FindObjectsOfType<Enemy>();
+        turrets = FindObjectsOfType<Turret>();
     }
 }

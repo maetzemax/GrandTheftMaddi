@@ -2,32 +2,30 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
-    private float _attackTime = 0f;
+    public AttackController attackController;
 
     private Enemy _stats;
-    
-    private Player _target;
     private NavMeshAgent _agent;
 
     public Transform centrePoint;
 
     private void Awake() {
         _stats = GetComponent<Enemy>();
-        _target = Player.instance;
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _stats.movementSpeed;
     }
 
     private void Update() {
-        #region PlayerDetection
+        #region TargetDetection
+        if (attackController.currentTarget != null) {
+            var distance = Vector3.Distance(transform.position, attackController.currentTarget.transform.position);
 
-        var distance = Vector3.Distance(transform.position, _target.transform.position);
-        
-        if (distance <= _stats.detectionRange) {
-            _agent.SetDestination(_target.transform.position);
+            if (distance <= _stats.detectionRange) {
+                _agent.SetDestination(attackController.currentTarget.transform.position);
 
-            if (distance <= _agent.stoppingDistance) {
-                FaceTarget();
+                if (distance <= _agent.stoppingDistance) {
+                    FaceTarget();
+                }
             }
         }
 
@@ -43,21 +41,10 @@ public class EnemyController : MonoBehaviour {
         }
         
         #endregion
-
-        #region Attack
-
-        _attackTime -= Time.deltaTime;
-        if (!(_attackTime <= 0.0f)) return;
-        if (!(distance <= _stats.attackRange)) return;
-        
-        Player.instance.currentHealth -= 1;
-        _attackTime = 1 / _stats.attackSpeed;
-
-        #endregion
     }
 
     private void FaceTarget() {
-        var direction = (_target.transform.position - transform.position).normalized;
+        var direction = (attackController.currentTarget.transform.position - transform.position).normalized;
         var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }

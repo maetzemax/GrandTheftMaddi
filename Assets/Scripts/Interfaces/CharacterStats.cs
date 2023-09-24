@@ -7,7 +7,7 @@ public class CharacterStats: MonoBehaviour {
     
     [Header("Health")] 
     public float maxHealth;
-    [HideInInspector] public float currentHealth;
+    public float currentHealth;
     // Health added per second
     public float healthRegenerationRate;
 

@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984335938479834842}
-  - component: {fileID: 5287460085654773594}
   - component: {fileID: -1617423565857443063}
   - component: {fileID: 4097208438078156926}
+  - component: {fileID: -2406626637343312761}
+  - component: {fileID: 5063821491901477029}
+  - component: {fileID: 5287460085654773594}
   - component: {fileID: 3147812820672775210}
   - component: {fileID: 5472560841833940720}
   m_Layer: 0
@@ -37,6 +39,73 @@ Transform:
   - {fileID: 7969890059960241047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1617423565857443063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118871042437496413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402f16c6e88d674428c5bcd0c02aa31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  maxHealth: 5
+  currentHealth: 0
+  healthRegenerationRate: 0
+  attackDamage: 1
+  attackSpeed: 1
+  attackRange: 2.5
+  drops:
+  - {fileID: 3564333885625838665, guid: 3dd3eeece7116419eb5e19a6fce64e52, type: 3}
+  detectionRange: 20
+  patrolRange: 50
+--- !u!114 &4097208438078156926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118871042437496413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f77c019db46b3e49b735ea83b8a0f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackController: {fileID: -2406626637343312761}
+  centrePoint: {fileID: 1984335938479834842}
+--- !u!114 &-2406626637343312761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118871042437496413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee917f6da5661094eb1d2501289f5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: -1617423565857443063}
+  enemyType: 0000000002000000
+  currentTarget: {fileID: 0}
+--- !u!114 &5063821491901477029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118871042437496413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7989d84ec2b1d474f81eebcb4e3825a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: -2406626637343312761}
+  projectile: {fileID: 6812790442725852008, guid: 054fcbd6c36679844a2d825c4f6643b9, type: 3}
+  shootingPoint: {fileID: 0}
 --- !u!195 &5287460085654773594
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -59,40 +128,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-1617423565857443063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118871042437496413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402f16c6e88d674428c5bcd0c02aa31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 3
-  maxHealth: 5
-  currentHealth: 0
-  healthRegenerationRate: 0
-  attackDamage: 1
-  attackSpeed: 1
-  attackRange: 2
-  detectionRange: 20
-  patrolRange: 50
---- !u!114 &4097208438078156926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118871042437496413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f77c019db46b3e49b735ea83b8a0f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  centrePoint: {fileID: 1984335938479834842}
 --- !u!54 &3147812820672775210
 Rigidbody:
   m_ObjectHideFlags: 0

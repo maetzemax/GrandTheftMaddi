@@ -5,10 +5,11 @@ public class Projectile : MonoBehaviour {
     private Enemy _enemy;
 
     private void OnCollisionEnter(Collision col) {
+
         if (col.gameObject.CompareTag("Enemy")) {
             _enemy = col.gameObject.GetComponent<Enemy>();
             _isCurrentlyColliding = true;
-        } else {
+        } else if (col.gameObject.CompareTag("Ground")) {
             Destroy(gameObject);
         }
     }
