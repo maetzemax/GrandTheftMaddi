@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-    private MeshCollider _meshCollider;
+    private TerrainCollider _meshCollider;
     public LayerMask layerMask;
     
     public float spawnRate = 5.0f;
@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject[] enemies;
 
     private void Start() {
-        _meshCollider = gameObject.GetComponent<MeshCollider>();
+        _meshCollider = gameObject.GetComponent<TerrainCollider>();
     }
 
     private void Update() {

@@ -5574,6 +5574,7 @@ MonoBehaviour:
   stats: {fileID: 2061543302}
   enemyType: 01000000
   currentTarget: {fileID: 0}
+  attackTime: 0
 --- !u!114 &2061543304
 MonoBehaviour:
   m_ObjectHideFlags: 0

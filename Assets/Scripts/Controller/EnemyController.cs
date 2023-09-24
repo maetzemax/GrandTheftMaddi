@@ -35,7 +35,6 @@ public class EnemyController : MonoBehaviour {
         
         if (_agent.remainingDistance <= _agent.stoppingDistance) {
             if (RandomPoint(centrePoint.position, _stats.patrolRange, out var point)) {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 _agent.SetDestination(point);
             }
         }
@@ -50,7 +49,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result) {
-        var randomPoint = center + Random.insideUnitSphere * range; 
+        var randomPoint = center + Random.insideUnitSphere * range;
         if (NavMesh.SamplePosition(randomPoint, out var hit, 1.0f, NavMesh.AllAreas)) {
             result = hit.position;
             return true;

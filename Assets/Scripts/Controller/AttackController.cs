@@ -1,29 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterType {
-    PLAYER,
-    ENEMY,
-    TURRET
-}
-
 public class AttackController : MonoBehaviour {
-    [SerializeField] public CharacterStats stats;
+    // Holds the stats of the owner
+    public CharacterStats stats;
 
+    // List of types which the owner can attack
     public CharacterType[] enemyType;
 
+    // List of all targets
     List<GameObject> targets;
+    // The nearest target
     [HideInInspector] public GameObject currentTarget;
 
-    private float attackTime = 0f;
+    // Countdown for attacks
+    [HideInInspector] public float attackTime = 0f;
 
-    [HideInInspector] public bool canAttack() {
+    public bool canAttack() {
         return attackTime <= 0.0f && GetNearestTargetDistance() <= stats.attackRange;
     }
 
     private void Update() {
-        TargetsByType();
         AttackTimer();
+        TargetsByType();
     }
 
     private float GetNearestTargetDistance() {
@@ -42,6 +41,7 @@ public class AttackController : MonoBehaviour {
         return minimumDistance;
     }
 
+    // Gets all the living targets for the owner e.g. Enemies for turrets
     private void TargetsByType() {
         targets = new List<GameObject>();
         foreach (var type in enemyType) {
@@ -52,20 +52,12 @@ public class AttackController : MonoBehaviour {
                     }
                 case CharacterType.TURRET: {
                         var turrets = GameManager.Instance.turrets;
-                        if (turrets == null) return;
-                        foreach (var t in turrets) {
-                            if (t == null) continue;
-                            targets.Add(t.gameObject);
-                        }
+                        targets.AddRange(turrets);
                         break;
                     }
                 case CharacterType.ENEMY: {
                         var enemies = GameManager.Instance.enemies;
-                        if (enemies == null) return;
-                        foreach (var e in enemies) {
-                            if (e == null) continue;
-                            targets.Add(e.gameObject);
-                        }
+                        targets.AddRange(enemies);
                         break;
                     }
             }
@@ -73,12 +65,6 @@ public class AttackController : MonoBehaviour {
     }
 
     private void AttackTimer() {
-        if (!canAttack()) {
-            attackTime -= Time.deltaTime;
-            return;
-        }
-
-        attackTime = 1f / stats.attackSpeed;
-        print(attackTime);
+        attackTime -= Time.deltaTime;
     }
 }

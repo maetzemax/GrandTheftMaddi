@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    [HideInInspector] public Enemy[] enemies;
-    [HideInInspector] public Turret[] turrets;
+    [HideInInspector] public GameObject[] enemies;
+    [HideInInspector] public GameObject[] turrets;
 
     [HideInInspector] public int killedEnemies = 0;
 
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        enemies = FindObjectsOfType<Enemy>();
-        turrets = FindObjectsOfType<Turret>();
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        turrets = GameObject.FindGameObjectsWithTag("Turret");
     }
 }
