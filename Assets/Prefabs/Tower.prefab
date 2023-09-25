@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1183218532675675323}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 9111345555664173573}
   m_Layer: 0
   m_Name: Particle System
-  m_TagString: Turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5131,6 +5131,7 @@ MonoBehaviour:
   stats: {fileID: 2765906161916712443}
   enemyType: 01000000
   currentTarget: {fileID: 0}
+  attackTime: 0
 --- !u!114 &2424079243829942467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5262,7 +5263,7 @@ GameObject:
   - component: {fileID: 7699178808381939298}
   m_Layer: 0
   m_Name: Shooting Point
-  m_TagString: Turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

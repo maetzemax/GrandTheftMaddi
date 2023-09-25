@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player: CharacterStats {
 
@@ -21,6 +22,9 @@ public class Player: CharacterStats {
     public float criticalDamagePercentage;
     
     private void Update() {
-        if (currentHealth <= 0.0f) Destroy(gameObject);
+        if (currentHealth <= 0.0f) {
+            Destroy(gameObject);
+            SceneManager.LoadScene(0);
+        }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Models\CharacterType.cs" />
     <Compile Include="Assets\Scripts\UI\KillCounter.cs" />
     <Compile Include="Assets\Scripts\Characters\Turret.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Projectile.cs" />

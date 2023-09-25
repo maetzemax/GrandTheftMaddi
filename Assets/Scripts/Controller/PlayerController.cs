@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour {
     
     private void Update() {
         // GROUNDING
-        _groundedPlayer = Physics.CheckSphere(groundCheck.position, detectionRange, groundMask);
+        _groundedPlayer = Physics.CheckBox(groundCheck.position, new Vector3(0.2f, detectionRange, 0.2f), Quaternion.identity, groundMask);
         if (_groundedPlayer && _playerVelocity.y < 0) {
             _playerVelocity.y = 0;
         }
@@ -56,8 +57,8 @@ public class PlayerController : MonoBehaviour {
 
         if (angle is > 180 and < 340) {
             angles.x = 340;
-        } else if (angle is < 180 and > 40) {
-            angles.x = 40;
+        } else if (angle is < 180 and > 50) {
+            angles.x = 50;
         }
 
         followTarget.transform.localEulerAngles = angles;
@@ -74,5 +75,10 @@ public class PlayerController : MonoBehaviour {
 
         _playerVelocity.y += GravityValue * Time.deltaTime;
         _controller.Move(_playerVelocity * Time.deltaTime);
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(groundCheck.position, new Vector3(0.2f, detectionRange, 0.2f));
     }
 }

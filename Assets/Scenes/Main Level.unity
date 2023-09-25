@@ -1070,7 +1070,7 @@ Transform:
   m_GameObject: {fileID: 726198314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: 50}
+  m_LocalPosition: {x: 50, y: 1, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1106,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 785063713}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51, y: 2.299, z: 45}
+  m_LocalPosition: {x: 51, y: 3.299, z: 45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1406,9 +1406,9 @@ MonoBehaviour:
   CameraDistance: 5
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.001
+    m_Bits: 64
+  IgnoreTag: Obstacle
+  CameraRadius: 0.3
   DampingIntoCollision: 0
   DampingFromCollision: 0
 --- !u!114 &961589813
@@ -2172,7 +2172,7 @@ MonoBehaviour:
   aimingSpeed: 2
   groundMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   groundCheck: {fileID: 1242915797}
   detectionRange: 0.01
   followTarget: {fileID: 1231805693}
@@ -2343,7 +2343,7 @@ Transform:
   m_GameObject: {fileID: 2053101710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51, y: 2.299, z: 45}
+  m_LocalPosition: {x: 51, y: 3.299, z: 45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
