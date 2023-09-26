@@ -19,7 +19,8 @@ public class Enemy : CharacterStats {
             var percentage = Random.Range(0.00f, 1.00f);
             if (percentage < 0.05f) {
                 if (Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity)) {
-                    Instantiate(drops[0], hit.point, Quaternion.identity);
+                    var drop = Instantiate(drops[0], hit.point, Quaternion.identity);
+                    Destroy(drop, 60f);
                 }
             }
             GameManager.Instance.killedEnemies += 1;
