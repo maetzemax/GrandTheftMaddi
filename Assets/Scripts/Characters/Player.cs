@@ -24,7 +24,10 @@ public class Player: CharacterStats {
     private void Update() {
         if (currentHealth <= 0.0f) {
             Destroy(gameObject);
+
             SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
