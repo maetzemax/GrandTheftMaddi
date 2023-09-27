@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 public class Enemy : CharacterStats {
 
     public GameObject[] drops;
+    public GameObject XP;
 
     [Header("AI Behaviour")]
     public float detectionRange;
@@ -23,6 +24,7 @@ public class Enemy : CharacterStats {
                     Destroy(drop, 60f);
                 }
             }
+            Instantiate(XP, transform.position, Quaternion.identity);
             GameManager.Instance.killedEnemies += 1;
             Destroy(gameObject);
         }

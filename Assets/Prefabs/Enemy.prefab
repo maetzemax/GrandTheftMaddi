@@ -60,6 +60,7 @@ MonoBehaviour:
   attackRange: 2
   drops:
   - {fileID: 3564333885625838665, guid: 3dd3eeece7116419eb5e19a6fce64e52, type: 3}
+  XP: {fileID: 6206398116737891667, guid: 5d0bcfd72ccde844e90306501fdf0681, type: 3}
   detectionRange: 20
   patrolRange: 50
 --- !u!114 &4097208438078156926
