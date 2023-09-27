@@ -21,6 +21,7 @@ public class AttackController : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.currentGameState != GameManager.GameState.Ingame) return;
         AttackTimer();
         TargetsByType();
     }

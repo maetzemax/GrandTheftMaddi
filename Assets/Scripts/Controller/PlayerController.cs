@@ -1,3 +1,4 @@
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,8 +10,7 @@ public class PlayerController : MonoBehaviour {
     private const float JumpHeight = 1.0f;
     private const float GravityValue = -9.81f;
 
-    [Header("Sensitivity")]
-    [SerializeField] private float aimingSpeed = 2.0f;
+    private float aimingSpeed;
 
     [Header("Collision Detection")]
     [SerializeField] private LayerMask groundMask;
@@ -23,15 +23,17 @@ public class PlayerController : MonoBehaviour {
     public GameObject followTarget;
     
     private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         _controller = gameObject.AddComponent<CharacterController>();
         _controller.skinWidth = 0.001f;
         _controller.height = 1f;
         _stats = GetComponent<Player>();
+        aimingSpeed = PlayerPrefs.GetFloat("Sensibility");
+        FindAnyObjectByType<CinemachineVirtualCamera>().m_Lens.FieldOfView = PlayerPrefs.GetFloat("FOV");
     }
     
     private void Update() {
+        if (GameManager.currentGameState != GameManager.GameState.Ingame) return;
+
         // GROUNDING
         _groundedPlayer = Physics.CheckBox(groundCheck.position, new Vector3(0.2f, detectionRange, 0.2f), Quaternion.identity, groundMask);
         if (_groundedPlayer && _playerVelocity.y < 0) {

@@ -16,6 +16,13 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.currentGameState != GameManager.GameState.Ingame) {
+            _agent.isStopped = true;
+            return;
+        } else {
+            _agent.isStopped = false;
+        }
+
         #region TargetDetection
         if (attackController.currentTarget != null) {
             var distance = Vector3.Distance(transform.position, attackController.currentTarget.transform.position);

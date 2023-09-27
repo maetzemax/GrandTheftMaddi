@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\UI\KillCounter.cs" />
     <Compile Include="Assets\Scripts\Characters\Turret.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Projectile.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\Characters\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\AttackController.cs" />
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\UI\IngameMenu.cs" />
     <Compile Include="Assets\Scripts\Mechanics\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Mechanics\RangeAttack.cs" />
   </ItemGroup>

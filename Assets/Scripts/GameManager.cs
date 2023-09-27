@@ -17,9 +17,14 @@ public class GameManager : MonoBehaviour {
         } else { 
             Instance = this; 
         } 
+
+        if (PlayerPrefs.GetFloat("Sensibility") == 0) {
+            PlayerPrefs.SetFloat("Sensibility", 2);
+            PlayerPrefs.SetFloat("FOV", 60);
+        }
     }
     
-    public GameState currentGameState = GameState.Menu;
+    public static GameState currentGameState = GameState.Menu;
     
     public enum GameState {
         Menu,
@@ -29,9 +34,35 @@ public class GameManager : MonoBehaviour {
         Ingame
     }
 
+    void CheckCursorStatus() {
+        switch (currentGameState) {
+            case GameState.Menu:
+            case GameState.Paused:
+            case GameState.Shopping:
+            case GameState.LevelUP:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                break;
+            case GameState.Ingame:
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                break;
+        }
+    }
+
     // Update is called once per frame
     void Update() {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         turrets = GameObject.FindGameObjectsWithTag("Turret");
+
+        CheckCursorStatus();
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (currentGameState == GameState.Ingame) {
+                currentGameState = GameState.Paused;
+            } else if (currentGameState == GameState.Paused) {
+                currentGameState = GameState.Ingame;
+            }
+        }
     }
 }

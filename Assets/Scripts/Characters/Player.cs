@@ -8,6 +8,7 @@ public class Player: CharacterStats {
     public static Player instance;
     
     private void Awake() {
+        GameManager.currentGameState = GameManager.GameState.Ingame;
         currentHealth = maxHealth;
         instance = this;
     }
@@ -24,10 +25,8 @@ public class Player: CharacterStats {
     private void Update() {
         if (currentHealth <= 0.0f) {
             Destroy(gameObject);
-
+            GameManager.currentGameState = GameManager.GameState.Menu;
             SceneManager.LoadScene(0);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
     }
 }
