@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void SpawnEnemy() {
         var randomIndex = Random.Range(0, enemies.Length);
-        var enemyAmount = Random.Range(minAmount, 5);
+        var enemyAmount = Random.Range(minAmount, maxAmount);
 
         for (int enemyCount = 0; enemyCount < enemyAmount; enemyCount++) {
             var randomSpawnPosition = getRandomPosition();

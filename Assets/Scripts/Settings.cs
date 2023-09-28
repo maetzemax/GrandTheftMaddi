@@ -15,6 +15,10 @@ public class Settings : MonoBehaviour {
     public Text SensibilityText;
     private float sensibilityValue;
 
+    [Header("Canvas")]
+    public Canvas settings;
+    public Canvas menu;
+
     private void Awake() {
         GameManager.currentGameState = GameManager.GameState.Menu;
         fovValue = PlayerPrefs.GetFloat("FOV");
@@ -32,9 +36,11 @@ public class Settings : MonoBehaviour {
         sensibilityValue = SensibilitySlider.value;
     }
 
+    [System.Obsolete]
     public void Save() {
         PlayerPrefs.SetFloat("FOV", fovValue);
         PlayerPrefs.SetFloat("Sensibility", sensibilityValue);
-        SceneManager.LoadScene(0);
+        settings.gameObject.active = false;
+        menu.gameObject.active = true;
     }
 }

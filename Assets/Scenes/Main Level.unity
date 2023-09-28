@@ -2746,7 +2746,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 1118871042437496413, guid: f3352930abf9a074c80be52ed65607ca, type: 3}
   minAmount: 1
-  maxAmount: 3
+  maxAmount: 4
 --- !u!1 &2052232881
 GameObject:
   m_ObjectHideFlags: 0
