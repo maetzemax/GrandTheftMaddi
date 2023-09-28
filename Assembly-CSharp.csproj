@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Mechanics\Projectile.cs" />
     <Compile Include="Assets\Scripts\Characters\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\XPBar.cs" />
     <Compile Include="Assets\Scripts\Characters\Player.cs" />
     <Compile Include="Assets\Scripts\Controller\AttackController.cs" />
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />

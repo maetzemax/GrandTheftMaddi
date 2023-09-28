@@ -1411,7 +1411,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 58d00b1d4a12ed94ab07b0174e5d8d90, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.015
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1741,6 +1741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007188757}
   - component: {fileID: 1007188758}
+  - component: {fileID: 1007188759}
   m_Layer: 5
   m_Name: XP - Bar
   m_TagString: Untagged
@@ -1815,12 +1816,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1007188759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007188756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587664147231b2a4fa3625b722cfd964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1031960707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2488,8 @@ MonoBehaviour:
   criticalDamageMultiplier: 0
   criticalDamagePercentage: 0
   xp: 0
+  nextLvlXp: 10
+  currentLevel: 1
 --- !u!1 &1905537041
 GameObject:
   m_ObjectHideFlags: 0
