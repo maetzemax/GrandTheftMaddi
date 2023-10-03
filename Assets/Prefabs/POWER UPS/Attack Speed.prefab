@@ -534,8 +534,8 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthRegenerationRate: 0
-  attackDamage: 1
-  attackSpeed: 0
+  attackDamage: 0
+  attackSpeed: 0.1
   attackRange: 0
 --- !u!1 &8100801667097504669
 GameObject:

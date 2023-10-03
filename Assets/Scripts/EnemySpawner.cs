@@ -5,21 +5,24 @@ public class EnemySpawner : MonoBehaviour {
     [Header("Spawn Properties")]
     public LayerMask layerMask;
     public float spawnRate = 5.0f;
+    private float initialSpawnRate;
 
     [Header("Radius")]
     public float minDistance = 10f;
     public float maxDistance = 50f;
 
     [Header("Enemies")]
-    public GameObject[] enemies;
+    public GameObject[] firstWaveEnemies;
+    public GameObject[] secondWaveEnemies;
     public float minAmount = 1;
     public float maxAmount = 3;
 
-    private float _spawnTime = 5.0f;
+    private float _spawnTime = 0.0f;
     private Player _player;
 
     private void Start() {
         _player = Player.instance;
+        initialSpawnRate = spawnRate;
     }
 
     private void Update() {
@@ -33,13 +36,27 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     private void SpawnEnemy() {
-        var randomIndex = Random.Range(0, enemies.Length);
-        var enemyAmount = Random.Range(minAmount, maxAmount);
+        if (spawnRate > (initialSpawnRate / 2)) {
+            var enemyAmount = Random.Range(minAmount, maxAmount);
+            for (int enemyCount = 0; enemyCount < enemyAmount; enemyCount++) {
+                var randomSpawnPosition = getRandomPosition();
+                var randomIndex = Random.Range(0, firstWaveEnemies.Length);
 
-        for (int enemyCount = 0; enemyCount < enemyAmount; enemyCount++) {
-            var randomSpawnPosition = getRandomPosition();
-            if (Physics.Raycast(randomSpawnPosition, Vector3.down, out var hit, Mathf.Infinity, layerMask)) {
-                Instantiate(enemies[randomIndex], hit.point, Quaternion.identity);
+                if (Physics.Raycast(randomSpawnPosition, Vector3.down, out var hit, Mathf.Infinity, layerMask) && Vector3.Distance(randomSpawnPosition, _player.transform.position) > minDistance) {
+                    Instantiate(firstWaveEnemies[randomIndex], hit.point, Quaternion.identity);
+                }
+            }
+        }
+
+        if (spawnRate < (initialSpawnRate / 2)) {
+            var enemyAmount = Random.Range(minAmount, maxAmount);
+            for (int enemyCount = 0; enemyCount < enemyAmount; enemyCount++) {
+                var randomSpawnPosition = getRandomPosition();
+                var randomIndex = Random.Range(0, secondWaveEnemies.Length);
+
+                if (Physics.Raycast(randomSpawnPosition, Vector3.down, out var hit, Mathf.Infinity, layerMask) && Vector3.Distance(randomSpawnPosition, _player.transform.position) > minDistance) {
+                    Instantiate(secondWaveEnemies[randomIndex], hit.point, Quaternion.identity);
+                }
             }
         }
 
@@ -49,11 +66,10 @@ public class EnemySpawner : MonoBehaviour {
 
     Vector3 getRandomPosition() {
         var position = new Vector3(
-            Random.Range(_player.player.transform.position.x + minDistance, _player.player.transform.position.x + maxDistance),
+            Random.Range(_player.transform.position.x - maxDistance, _player.transform.position.x + maxDistance),
             100,
-            Random.Range(_player.player.transform.position.z + minDistance, _player.player.transform.position.z + maxDistance)
+            Random.Range(_player.transform.position.z - maxDistance, _player.transform.position.z + maxDistance)
         );
-
 
         return position;
     }

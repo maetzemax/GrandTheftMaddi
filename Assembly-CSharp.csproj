@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\Scripts\UI\IngameMenu.cs" />
     <Compile Include="Assets\Scripts\XP.cs" />
+    <Compile Include="Assets\PowerUpSlot.cs" />
     <Compile Include="Assets\Scripts\Mechanics\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Mechanics\RangeAttack.cs" />
   </ItemGroup>
