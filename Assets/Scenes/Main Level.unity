@@ -3215,12 +3215,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spawnRate: 10
-  minDistance: 20
+  minDistance: 10
   maxDistance: 20
   firstWaveEnemies:
   - {fileID: 1118871042437496413, guid: f3352930abf9a074c80be52ed65607ca, type: 3}
   secondWaveEnemies:
-  - {fileID: 1118871042437496413, guid: f3352930abf9a074c80be52ed65607ca, type: 3}
   - {fileID: 1118871042437496413, guid: f4cdfbb8dba7ec042abfb087a2995a97, type: 3}
   minAmount: 1
   maxAmount: 4

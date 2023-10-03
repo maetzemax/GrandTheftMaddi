@@ -14,7 +14,10 @@ public class RangeAttack : MonoBehaviour {
 
     void Attack() {
         controller.attackTime = 1 / controller.stats.attackSpeed;
-        var current = Instantiate(projectile, shootingPoint.position, new Quaternion());
+        var currentProjectile = projectile.GetComponent<Projectile>();
+        currentProjectile.attackDamage = controller.stats.attackDamage;
+        
+        var current = Instantiate(currentProjectile, shootingPoint.position, new Quaternion());
         current.transform.LookAt(controller.currentTarget.transform);
         Destroy(current, 10);
     }
