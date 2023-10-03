@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1.5
-  maxHealth: 20
+  maxHealth: 15
   currentHealth: 0
   healthRegenerationRate: 0
   attackDamage: 2
