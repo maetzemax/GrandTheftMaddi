@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
         if (GameManager.currentGameState != GameManager.GameState.Ingame) return;
 
         // GROUNDING
-        _groundedPlayer = Physics.CheckBox(groundCheck.position, new Vector3(0.2f, detectionRange, 0.2f), Quaternion.identity, groundMask);
+        _groundedPlayer = Physics.CheckBox(groundCheck.position, new Vector3(0.3f, detectionRange, 0.3f), Quaternion.identity, groundMask);
         if (_groundedPlayer && _playerVelocity.y < 0) {
             _playerVelocity.y = 0;
         }

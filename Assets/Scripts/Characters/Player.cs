@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player: CharacterStats {
 
@@ -42,7 +41,7 @@ public class Player: CharacterStats {
         if (xp >= nextLvlXp) {
             currentLevel += 1;
             xp = 0;
-            nextLvlXp += Mathf.RoundToInt(nextLvlXp * 1.5f);
+            nextLvlXp += Mathf.RoundToInt(nextLvlXp * 1.1f);
             GameManager.currentGameState = GameManager.GameState.LevelUP;
         }
 

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\UpgradeCard.cs" />
     <Compile Include="Assets\Scripts\Interfaces\CharacterStats.cs" />
+    <Compile Include="Assets\Void.cs" />
     <Compile Include="Assets\Scripts\SetTerrainObstacle.cs" />
     <Compile Include="Assets\Scripts\Controller\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Models\CharacterType.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\Scripts\UI\IngameMenu.cs" />
     <Compile Include="Assets\Scripts\XP.cs" />
+    <Compile Include="Assets\PowerUpSlot.cs" />
     <Compile Include="Assets\Scripts\Mechanics\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Mechanics\RangeAttack.cs" />
   </ItemGroup>

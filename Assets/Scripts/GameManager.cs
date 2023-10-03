@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour {
         Paused,
         LevelUP,
         Shopping,
-        Ingame
+        Ingame,
+        Death
     }
 
     void CheckCursorStatus() {
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour {
             case GameState.Menu:
             case GameState.Paused:
             case GameState.Shopping:
+            case GameState.Death:
             case GameState.LevelUP:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
